@@ -50,7 +50,7 @@ def main():
 	while True:
 		p = raw_input("[?] Wordlist Default? (Y/n): ")
 		if p in ["Y","y"]:
-			wordlist = "wordlist.txt"
+			wordlist = "password.txt"
 			break
 		elif p in ["N","n"]:
 			wordlist = raw_input("[?] Wordlist: ")

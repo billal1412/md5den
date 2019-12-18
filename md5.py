@@ -29,7 +29,8 @@ INFO:\033[34;1m
 """
 try:
 	import os,sys,time,hashlib
-except Exceptions as E:
+	from prompt_toolkit import prompt
+except Exception as E:
 	print ("[Err]: "+str(E))
 	sys.exit()
 
@@ -38,9 +39,9 @@ def dencrypt(hash,password):
 		sys.stdout.write("\n\033[34;1m[\033[33;1m!\033[34;1m] \033[33;1mTrying: \033[31;1m"+str(password))
 		sys.stdout.flush()
 #	time.sleep(0.1)
-		md5 = hashlib.md5()
-		md5.update(str(password))
-		md = md5.hexdigest()
+		sha1 = hashlib.sha1()
+		sha1.update(str(password))
+		md = sha1.hexdigest()
 		if hash == md:
 			print ("\033[34;1m\n[\033[32;1m+\033[34;1m] \033[37;1mFound: \033[32;1m"+str(password))
 			print ("\033[0m")
@@ -75,7 +76,7 @@ def login():
 	print (__banner__)
 	pwd = "6d845a610cf2ff6872a04239349251e4"
 	print ("[*] Please contact author to find out the password")
-	pw = raw_input("[?] Password to unlock: ")
+	pw = prompt("[?] Password to unlock: ",is_password=True)
 	m = hashlib.md5()
 	m.update(pw)
 	md = m.hexdigest()
@@ -83,4 +84,4 @@ def login():
 		main()
 	else:
 		print ("[*] Please contact author to find out the password")
-login()
+main()
